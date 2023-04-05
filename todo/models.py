@@ -8,3 +8,5 @@ class User(models.Model):
     email = models.EmailField(max_length=70, unique=True)
     login = models.CharField(max_length=64)
     password = models.CharField(max_length=64)
+    is_superuser = models.BooleanField
+    is_staff = models.BooleanField
