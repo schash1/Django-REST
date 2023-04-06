@@ -22,11 +22,14 @@ const TODOItem = ({todo}) => {
             <td>
                 {todo.on_off}
             </td>
+            <td>
+                <button onClick={()=>deleteTODO(item.id)} type='button'>Delete</button>
+            </td>
         </tr>
     )
 }
 
-const TODOList = ({todos}) => {
+const TODOList = ({todos, deleteTODO}) => {
     return (
         <table>
             <th>
@@ -46,9 +49,10 @@ const TODOList = ({todos}) => {
             </th>
             <th>
                 On Off
-            </th>
-            {todos.map((todo) => <TODOItem todo={todo} />)}
+            <th></th>
+            {todos.map((todo) => <TODOItem todo={todo} deleteTODO={deleteTODO} />)}
         </table>
+        <Link to='/todos/create'>Create</Link>
     )
 }
 

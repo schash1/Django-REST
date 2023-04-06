@@ -13,11 +13,14 @@ const ProjectItem = ({project}) => {
             <td>
                 {project.users}
             </td>
+            <td>
+                <button onClick={()=>deleteProject(item.id)} type='button'>Delete</button>
+            </td>
         </tr>
     )
 }
 
-const ProjectList = ({projects}) => {
+const ProjectList = ({projects, deleteProject}) => {
     return (
         <table>
             <th>
@@ -29,8 +32,10 @@ const ProjectList = ({projects}) => {
             <th>
                 User
             </th>
-            {projects.map((project) => <ProjectItem project={project} />)}
+            <th></th>
+            {projects.map((project) => <ProjectItem project={project} deleteProject={deleteProject} />)}
         </table>
+        <Link to='/projects/create'>Create</Link>
     )
 }
 
