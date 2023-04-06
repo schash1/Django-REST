@@ -1,12 +1,13 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-from todo.views import UserModelViewSet, UserRetrieveAPIView
+from todo.views import UserModelViewSet, UserRetrieveAPIView, UserListAPIView
 from new_app.views import ProjectModelViewSet, TODOModelViewSet, ProjectRetrieveAPIView, TODORetrieveAPIView
 from new_app.views import ProjectDestroyAPIView, ProjectUpdateAPIView, TODODestroyAPIView, TODOUpdateAPIView
 from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from graphene_django.views import GraphQLView
 
 
 router = DefaultRouter()
@@ -39,4 +40,5 @@ urlpatterns = [
     path('generic/update/<int:pk>/', TODOUpdateAPIView.as_view()),
     path('api-token-auth/', views.obtain_auth_token),
     re_path(r'^api/(?P<version>\d\.\d)/users/$', UserListAPIView.as_view()),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 ]
